@@ -29,3 +29,15 @@ HTTP (Hypertext Transfer Protocol) es un protocolo de comunicación utilizado en
 <img src="https://miro.medium.com/max/920/1*w_iicbG7L3xEQTArjHUS6g.jpeg">
 
 <img src="https://www.steveschoger.com/status-code-poster/img/status-code.png">
+
+## ¿Qué son las APIs?
+Las APIs nos permiten, a través de código, la comunicación entre sistemas. Como backend developers, nos interesan las APIs que son servicio web y corren en el protocolo HTTP. La API utiliza una lista de rutas conocidas como endpoints, que provee las respuestas a las solicitudes del cliente. La solicitud debe ser empaquetada y retornada, y existen distintos tipos de empaquetado: JSON. XML.
+
+<img src="https://static.platzi.com/media/user_upload/7dc50204-6f44-4000-bfe3-1d8677bab50c-caf12dbc-7331-44d8-9131-c2523f325d08.jpg">
+
+### funciones clave:
+
+- Recepción de solicitudes: Las API reciben las solicitudes de los clientes. Estas solicitudes pueden contener información, parámetros o instrucciones específicas sobre lo que el cliente desea realizar.
+- Procesamiento de solicitudes: Las API procesan las solicitudes recibidas, verificando la autenticidad y validando los datos, si es necesario. Luego, pasan la solicitud al componente adecuado del backend para su procesamiento.
+- Envío de respuestas: Una vez que la solicitud ha sido procesada, las API envían las respuestas correspondientes de vuelta al cliente. Estas respuestas pueden incluir datos solicitados, confirmaciones de acción, errores o cualquier otra información relevante.
+- Gestión de errores: Las API también son responsables de gestionar los errores de manera adecuada. Si ocurre algún problema durante el procesamiento de la solicitud, las API deben enviar respuestas de error claras y descriptivas para informar al cliente sobre el problema.
