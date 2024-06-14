@@ -1,2 +1,2 @@
 # courses_SQL
-Encontraras anotaciones realizadas por mi de varios cursos realizados en diferentes plataformas como platzi o youtube.
+Encontraras anotaciones de varios cursos realizados en diferentes plataformas como platzi o youtube y sus ejercicios practicos.
