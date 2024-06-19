@@ -192,3 +192,11 @@ Soluciona el problema de la disponibilidad. Se tienen varias instancias del mism
 LOAD BALANCER -> Tiene conocimiento de nuestras instancias/servidores (al conjunto de servidores se denomina Clouster). Si un nodo(instancia) se cae, el load balancer se encarga de desviarla. Distribuye las peticiones.
 
 Si tenemos la base de datos local en cada servidor va haber un problema dado que no se tienen sincronizados los datos de las distintas bases de datos de los servidores. SOLUCION Gestionar la base de datos fuera de estos servidores. Quizas como un servidor aparte que sirva como DB.
+
+## Replicación 
+- La replicación es un conjunto de tecnologías destinadas a la copia y distribución de datos y objetos de base de datos desde una base de datos a otra, para luego sincronizar ambas bases de datos y mantener su coherencia.
+
+<center><img src="https://i.postimg.cc/dVvYx5Kz/imagen-2024-06-19-185359041.png"></center>
+
+[!NOTE]
+> en la replicación se deja un nodo de solo lectura o consultas y otro u otros de manipulación de datos, actualizar, crear, borrar, así se evita el colapso en la base de datos cuando hay muchos procesos al tiempo
