@@ -1,3 +1,5 @@
+
+
 # Backend
 <img src ="https://ecdisis.com/wp-content/uploads/2021/01/WhatsApp-Image-2021-07-30-at-11.03.53.jpeg">
 
@@ -198,5 +200,91 @@ Si tenemos la base de datos local en cada servidor va haber un problema dado que
 
 <center><img src="https://i.postimg.cc/dVvYx5Kz/imagen-2024-06-19-185359041.png"></center>
 
-[!NOTE]
+> [!NOTE]
+>
 > en la replicación se deja un nodo de solo lectura o consultas y otro u otros de manipulación de datos, actualizar, crear, borrar, así se evita el colapso en la base de datos cuando hay muchos procesos al tiempo
+
+## Cache
+- La memoria cache es un sistema de almacenamiento interno del servidor para guardar de manera temporal el retorno de información.
+- Se suele utilizar con información frecuentemente solicitada para mejorar el redimiento mediante el acceso rápido de los datos.
+- El sistema de memoria de cache puede estar dentro del mismo servidor guardando las peticiones que vayan llegando.
+- Es importante reconocer dónde es óptimo utilizar un sistema de cache, en donde sepamos que los sitios se encuentren constantemente solicitando información y el cliente envíe de manera constante la misma información.
+  - E-commerce.
+  - Sitios de noticias.
+  - Blogs.
+- No es muy bueno su uso para aplicaciones en tiempo real, como sistemas de chat.
+- Puede ser de utilidad para el bloqueo de ataques de denegación de servicio (DDoS). Esto es debido a que en una situación en la que recibas muchas peticiones al mismo endpoint en un espacio corto de tiempo tu sistema no se vería tan afectado, puesto que el sistema de caché empieza a responder en lugar del backend y la bases de datos, y podría absorber dicho ataque.
+
+## Colas de tareas
+- Ciertas tareas pueden tener un tiempo de espera muy largo.
+  - Reportes.
+  - Backups.
+  - Gráficos.
+  - Zips, PDFs, CSVs.
+- Para responder a los largos tiempo de espera de estos procesos, y no dejar al cliente esperando durante largos periodos de tiempo, existen las colas de tareas.
+- Una cola de tareas debe tomar en cuenta la ejecución y la respuesta.
+ - Eventualmente ejecuta el proceso (no es de manera instantánea).
+ - Puede responder por otro medio (como correo electrónico).
+- Las colas de tareas almacenan tareas pendientes para ser procesadas, las cuales son procesadas y manejadas en orden de llegada.
+  - Permite el manejo simultáneo de una gran cantidad de peticiones.
+  - Las tareas son manejadas de manera asíncrona, por lo que el cliente recibe una respuesta mientras la tarea está siendo procesada.
+  - Permite la retención de tareas en caso de fallas en el sistema, y su debido proceso una vez vuelva a estar disponible.
+  - Permite la priorización de tareas de acuerdo a su importancia y urgencia, realizando primero las tareas más críticas.
+  - Es posible el desacoplamiento de los diferentes procesos en un sistema, lo que permite el escalamiento de cada proceso de manera independiente, creando un sistema más flexible.
+
+## Server-Side Rendering
+
+El "Server-Side Rendering" (SSR) es un enfoque para renderizar y mostrar contenido web en el servidor antes de enviarlo al navegador. En lugar de enviar solo el código HTML vacío al navegador y esperar a que se cargue y renderice el contenido, con SSR, el servidor genera el HTML completo con el contenido dinámico y lo envía al navegador. Esto permite que el contenido se muestre más rápidamente al usuario, mejora la accesibilidad y el SEO, y proporciona una experiencia de usuario más fluida.
+<center><img src="https://www.educative.io/api/edpresso/shot/5456653749059584/image/5093564327395328"></center>
+
+### proveedores
+- `Vercel`: Plataforma de alojamiento para aplicaciones web estáticas y de servidor. Conocida por su integración con Next.js.
+
+- `Netlify` (asumo que te refieres a Netlify, no a "Nertfly"): Servicio de alojamiento para aplicaciones web estáticas. Ofrece características como formularios de contacto y funciones sin servidor.
+
+- `Firebase`: Plataforma de desarrollo de aplicaciones que proporciona servicios como autenticación de usuarios, almacenamiento en la nube y bases de datos en tiempo real. Popular para el desarrollo de aplicaciones móviles y web.
+<center><img src="https://i.postimg.cc/wvGqjQcx/imagen-2024-06-19-205753613.png"></center>
+
+### Ventajas de: El Server Side Rendering (SSR)
+
+- ``Mejora el SEO``: Los motores de búsqueda pueden indexar mejor las páginas que están renderizadas en el servidor.
+
+- ``Carga más rápida de la página``: La página se renderiza en el servidor antes de enviarse al navegador, por lo que se puede mostrar al usuario mucho antes que si se hiciera en el lado del cliente.
+
+- ``Mejora el rendimiento en dispositivos de baja potencia``: Al hacer el render en el servidor, se evita cargar la página completa en el navegador antes de mostrarla, lo que es importante en dispositivos de baja potencia.
+
+- ``Mayor compatibilidad``: Al hacer el render en el servidor, se pueden garantizar que la página se muestre de manera consistente en todos los navegadores, incluso en aquellos que no soportan JavaScript.
+
+- ``Mayor seguridad``: Al hacer el render en el servidor, se pueden ocultar datos sensibles y se pueden realizar validaciones y autenticaciones antes de enviar la página al navegador.
+
+### comaprativa entre SSR y CSR
+#### SSR
+`Ventajas`
+- El renderizado del HTML es más rapido
+- Los motores de busqueda (Google, Bing) valoran mejor este tipo de renderizado
+
+- `Desventajas`
+No es interactivo
+#### CSR
+- `Ventajas`
+- Es altamente interactivo
+`Desventajas`
+- Requiere más recursos por parte del cliente de forma local.
+- JSON no es tan rapido ( es el formato de datos que el servidor respondera al cliente y el deberia contruir y renderizar en base a eso.)
+- Malo para los motores de busqueda
+
+### ¿Qué es la técnica de Rehydration y en qué consiste?
+
+Es una técnica que combina características de SSR y CSR. En el Rehydration, se aprovecha el HTML y los datos renderizados desde el servidor, y luego se "hidrata" o complementa con una aplicación JavaScript que se ejecuta en el navegador.
+
+### ¿Qué es Prerendering y cómo funciona?
+
+El Prerendering es una técnica de renderizado web que implica generar y renderizar una página web completa en el servidor antes de que un usuario realice una solicitud. Esto significa que las páginas web se crean de antemano, y los resultados se almacenan en forma de archivos HTML estáticos que se pueden entregar de inmediato cuando se solicitan.
+### ¿En qué situaciones es especialmente útil el Server-Side Rendering (SSR)?
+
+Cuando se requiere:
+
+- Una indexación SEO efectiva
+- Una carga rápida de la página
+- Rendimiento en dispositivos de baja potencia
+- Mayor seguridad en la manipulación de datos y autenticación.
