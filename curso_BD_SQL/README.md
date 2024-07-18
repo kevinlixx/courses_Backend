@@ -76,6 +76,28 @@
 - `UUID`: Almacena identificadores únicos universales.
     - Tamaño: 16 bytes.
 
+# filtrar y ordenar datos SQL (like)
+
+## palabras reservadas 
+- facilita el trabajo de depuración y limpieza
+- permite comparar más rápido la información 
+
+- %z permite consultar palabras que termine con la letra z
+- `z%` permite consultar las palabras que empiezan con la letz
+- `%Z% Si la letra está ubicada en cualquier lugar 
+ ``` SQL
+SELECT* FROM STUDENTS WHERE LASTNAME LIKE 'J%' 
+```
+
+- es bueno filtrar las busqueda con solo los campos que necesitamos 
+- ejemplo 
+``` SQL
+SELECT FIRSTNAME , LASTNAME FROM STUDENTS WHERE LASTNAME LIKE '%O%'
+
+```
+
+
+
 # ¿Como crear una base de datos en SQL?
 
 ## Recomendaciones
