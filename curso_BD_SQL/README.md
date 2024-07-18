@@ -53,7 +53,7 @@
 - `DATE`: Almacena una fecha en formato 'YYYY-MM-DD'.
 - `TIME`: Almacena una hora en formato 'HH:MM:SS'.
 - `DATETIME`: Almacena una fecha y hora en formato 'YYYY-MM-DD HH:MM:SS'.
-- `TIMESTAMP`: Almacena una marca de tiempo en formato 'YYYY-MM-DD HH:MM:SS'.
+- `TIMESTAMP`: Almacena una marca de tiempo en formato local.
 
 ## Datos Booleanos
 - `BOOLEAN`: Almacena valores TRUE o FALSE.
@@ -75,3 +75,132 @@
 ## Tipos de Datos UUID
 - `UUID`: Almacena identificadores únicos universales.
     - Tamaño: 16 bytes.
+
+# ¿Como crear una base de datos en SQL?
+
+## Recomendaciones
+- Mantener la dorma en la que escribes los nobres de los atributos o tablas, es decir, si empiezas con mayúscula, mantenlo así. 
+```sql
+CREATE DATABASE nombre_de_la_base_de_datos;
+CREATE TABLE nombre_de_la_tabla (
+    columna1 tipo_de_dato,
+    columna2 tipo_de_dato,
+    columna3 tipo_de_dato,
+);
+```
+
+## ¿Qué considerar al definir atributos de una tabla?
+- `Primary key`: Elige una clave única, como un ID autoincremental.
+- `Atributos de negocio`: Utiliza claves de negocio para identificación externa.
+- `Tipos de datos`: Selecciona tipos adecuados, como INTEGER para IDs y VARCHAR para textos.
+
+## ¿Por qué es importante registrar fechas en las tablas?
+
+- `Trazabilidad`: Incluye `fecha_de_carga` y `fecha_de_modificación` para monitorear cambios y soportar decisiones basadas en datos.
+- `Cumplimiento`: Asegura que los datos están actualizados y documentados.
+
+## ¿Cómo relacionar tablas mediante claves foráneas?
+- `Foreign key`: Define la relación entre tablas usando `FOREIGN KEY` apuntando a la primary key de otra tabla.
+- `Sintaix`: `FOREIGN KEY (columna) REFERENCES tabla(columna)`
+
+> [!NOTE]
+> SQL significa Structured Query Language, es un lenguaje de programación que se utiliza para administrar bases de datos relacionales.
+
+# Origen de SQL
+<center><img src="https://static.platzi.com/media/user_upload/sql-history-c14862e8-ca98-4280-b5ab-c758f0e2f15c.jpg"></center>
+
+## Características clave de SQL
+### Lenguaje de Manipulación de Datos (DML)
+SQL permite realizar operaciones básicas de manipulación de datos a través de comandos como:
+
+- `SELECT`: Recuperar datos de una base de datos.
+- `INSERT`: Insertar nuevos datos en una tabla.
+- `UPDATE`: Modificar datos existentes.
+- `DELETE`: Eliminar datos de una tabla
+
+### Lenguaje de Definición de Datos (DDL)
+
+SQL también proporciona comandos para definir y modificar la estructura de la base de datos:
+
+- `CREATE TABLE`: Crear una nueva tabla.
+- `ALTER TABLE`: Modificar una tabla existente.
+- `DROP TABLE`: Eliminar una tabla.
+
+### Control de Acceso y Transacciones
+
+Con SQL, los usuarios pueden controlar el acceso a los datos y garantizar la integridad de las transacciones a través de comandos como:
+
+- `GRANT y REVOKE`: Controlar permisos de acceso.
+- `BEGIN TRANSACTION, COMMIT, y ROLLBACK`: Gestionar transacciones para asegurar la integridad de los datos.
+
+## Manipulación de Datos con SQL
+### insertar datos `INSERT INTO`
+```sql
+INSERT INTO nombre_de_la_tabla (columna1, columna2, columna3)
+VALUES (valor1, valor2, valor3);
+```
+### CONSULTAR DATOS `SELECT`
+```sql
+buscar toda la tabla
+SELECT * FROM nombre_de_la_tabla;
+buscar datos específicos
+SELECT columna1, columna2
+FROM nombre_de_la_tabla
+WHERE condicion;
+buscar datos con una condición
+SELECT * FROM nombre_de_la_tabla
+WHERE columna = valor;
+```
+<center><img src="https://static.platzi.com/media/user_upload/code%20%284%29%20%281%29-307542fb-af44-411f-9478-10c15cfeba59.jpg"></center>
+
+### ACTUALIZAR DATOS `UPDATE`
+```sql
+UPDATE nombre_de_la_tabla
+SET columna_a_modificar = nuevo_valor
+WHERE condicion;
+```
+
+#### verificar que se actualizo correctamente
+```sql
+SELECT * FROM nombre_de_la_tabla WHERE columna = valor;
+```
+
+### ELIMINAR DATOS `DELETE`
+```sql
+DELETE FROM nombre_de_la_tabla
+WHERE condicion;
+```
+
+- Antes de ejecutar un `DELETE`, es importante verificar que la condición sea correcta para evitar eliminar datos de forma accidental.
+
+## ¿Qué es la cláusula WHERE de SQL?
+### ¿Cómo usar la sentencia WHERE para consultar datos?
+La sentencia WHERE se usa en distintos contextos, como al modificar datos con UPDATE, eliminar datos con DELETE y en consultas con SELECT. Para comenzar, la sintaxis básica del WHERE incluye la palabra reservada, el nombre de la columna y los operadores lógicos. Por ejemplo, para consultar un instructor específico:
+``` sql 
+SELECT * FROM instructores WHERE INSTRUCTORID = 1;
+```
+### ¿Cómo utilizar operadores lógicos en MySQL?
+Puedes emplear varios operadores lógicos, como el símbolo igual (=) para igualdad y el símbolo de exclamación seguido de igual (!=) para diferencias. Por ejemplo, para excluir un instructor con ID específico:
+``` sql 
+SELECT * FROM instructores WHERE INSTRUCTORID != 1;
+```
+### ¿Cómo filtrar datos de texto en MySQL?
+Para filtrar datos de texto, utiliza comillas simples alrededor del valor. Por ejemplo, para encontrar un instructor llamado John:
+``` sql 
+SELECT * FROM instructores WHERE nombre = 'John';
+```
+### ¿Cómo trabajar con datos numéricos en MySQL?
+Los operadores para datos numéricos permiten comparaciones como mayor o menor que. Por ejemplo, para encontrar instructores con salario mayor a 5000 dólares:
+``` sql 
+SELECT * FROM instructores WHERE salario > 5000;
+``` 
+
+### ¿Cómo utilizar el operador BETWEEN en MySQL?
+El operador BETWEEN se usa para especificar un rango de valores. Por ejemplo, para encontrar instructores con salario entre 5000 y 9000 dólares:
+
+``` sql 
+SELECT * FROM instructores WHERE salario BETWEEN 5000 AND 9000;
+```
+
+### ¿Cómo practicar estos operadores en MySQL?
+Para practicar, intenta replicar estas consultas en tus propias tablas de la base de datos. Cambia los valores según sea necesario y observa los resultados. Utiliza el BETWEEN para rangos específicos y los operadores lógicos para filtrar datos de texto y números.
