@@ -1,0 +1,15 @@
+# Ignorar el repositorio Git
+.git/
+
+# Ignorar archivos de compilación
+bin/
+obj/
+
+# Ignorar archivos de configuración sensibles
+.env
+
+# Ignorar archivos de prueba
+tests/
+
+# Ignorar documentación
+README.md

@@ -1,0 +1,6 @@
+FROM nginx:1.21.6
+
+ARG CACHEBUST=1
+RUN apt-get update && apt-get -y upgrade
+
+RUN echo '<html><body>Mi página de inicio personalizada en su segunda versión</body></html>' > /usr/share/nginx/html/index.html

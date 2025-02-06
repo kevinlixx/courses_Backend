@@ -1,0 +1,23 @@
+services:
+  web:
+    image: nginx:latest
+    ports:
+      - "80:80"
+    volumes:
+      - ./html:/usr/share/nginx/html
+
+  app:
+    image: aminespinoza/websiteplatzi:latest
+    volumes:
+      - app_data:/app/data
+
+  db:
+    image: mysql:5.7
+    environment:
+      MYSQL_ROOT_PASSWORD: example
+    volumes:
+      - db_data:/var/lib/mysql 
+
+volumes:
+  app_data: 
+  db_data:   

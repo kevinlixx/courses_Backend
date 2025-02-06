@@ -1,0 +1,30 @@
+services:
+  web:
+    image: nginx:latest
+    ports:
+      - "80:80"
+    deploy:
+      replicas: 3 
+      update_config:
+        parallelism: 1
+        delay: 10s
+      restart_policy:
+        condition: on-failure
+    networks:
+      - frontend
+
+  app:
+    image: frontend:latest
+    deploy:
+      replicas: 5
+      restart_policy:
+        condition: any
+    networks:
+      - frontend
+      - backend
+
+networks:
+  frontend:
+    driver: overlay
+  backend:
+    driver: overlay

@@ -1,0 +1,15 @@
+services:
+  web:
+    image: nginx:latest
+    depends_on:
+      - app
+
+  app:
+    build: frontend/
+    depends_on:
+      - db
+
+  db:
+    image: mysql:5.7
+    environment:
+      MYSQL_ROOT_PASSWORD: p1ssw0rd!321
