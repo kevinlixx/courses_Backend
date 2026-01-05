@@ -11,3 +11,8 @@ C# se utiliza para desarrollar una amplia variedad de aplicaciones, incluyendo:
 
 # Algoritmo 
 Un algoritmo es una secuencia de pasos o instrucciones que se siguen para resolver un problema o realizar una tarea específica. En programacióne, los algoritmos son fundamentales para desarrollar soluciones eficientes y efectivas.
+
+# Comandos de C#
+
+-`Console.WriteLine("Hola Mundo");` : Imprime "Hola Mundo" en la consola.
+-`Console.ReadLine();` : Lee una línea de texto ingresada por el usuario en la consola.
